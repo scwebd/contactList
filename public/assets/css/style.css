@@ -12,6 +12,10 @@ th {
 	color: #fff;
 }
 
+#addContact .error {
+  color: #ff0000;
+}
+
 .nav-button {
 	float: right;
 }
