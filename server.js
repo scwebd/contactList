@@ -32,6 +32,8 @@ require("./routes/html-routes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
+// Note that, since we're done altering our data model, we removed 'force: true'
+// We will ALWAYS need to remove this/set to false before we deploy to production
 db.sequelize.sync({}).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on http://localhost:" + PORT);
