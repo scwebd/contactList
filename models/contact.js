@@ -24,6 +24,7 @@ module.exports = function(sequelize, DataTypes) {
         // phoneNumber (VARCHAR, length 10 characters, numbers only)
         phoneNumber: {
             type: DataTypes.STRING,
+            allowNull: true,
             validate: {
                 len: [10, 10],
                 is: ["^[0-9]+$",'i']
@@ -32,6 +33,7 @@ module.exports = function(sequelize, DataTypes) {
         // emailAddress (VARCHAR, must be valid email format)
         emailAddress: {
             type: DataTypes.STRING,
+            allowNull: true,
             validate: {
                 isEmail: true
             }

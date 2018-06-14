@@ -23,8 +23,8 @@ module.exports = function(app) {
 			firstName: req.body.firstName,
 			lastName: req.body.lastName,
 			contactType: req.body.contactType,
-			phoneNumber: req.body.phoneNumber,
-			emailAddress: req.body.emailAddress
+			phoneNumber: req.body.phoneNumber || null,
+			emailAddress: req.body.emailAddress || null
 		}).then(function(newContact) {
 			console.log("New contact:");
 			console.log(newContact);
