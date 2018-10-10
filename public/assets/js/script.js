@@ -19,6 +19,12 @@ $("#addContact").on("submit", function(event) {
 	});
 });
 
+// filter contact by type functionality
+$("#filterContacts").on("change", function() {
+    var type = $(this).val().toLowerCase();
+    location.href = "/" + type;
+})
+
 // delete contact functionality
 $(".delete").on("click", function() {
 	var id = $(this).attr("data-id");
