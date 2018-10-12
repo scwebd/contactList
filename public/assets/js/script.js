@@ -6,8 +6,8 @@ $("#addContact").on("submit", function(event) {
 		firstName: $("#firstName").val().trim(),
 		lastName: $("#lastName").val().trim(),
 		contactType: $("#contactType").val(),
-		phoneNumber: $("#phoneNum").val().trim(),
-		emailAddress: $("#emailAddr").val().trim()
+		phoneNumber: $("#phoneNumber").val().trim(),
+		emailAddress: $("#emailAddress").val().trim()
 	};
 
 	$.ajax("/api/contacts", {
@@ -22,14 +22,14 @@ $("#addContact").on("submit", function(event) {
 // filter contact by type functionality
 $("#filterContacts").on("change", function() {
     var type = $(this).val().toLowerCase();
-    location.href = "/" + type;
+    location.href = `/${type}`;
 })
 
 // delete contact functionality
 $(".delete").on("click", function() {
 	var id = $(this).attr("data-id");
 
-	$.ajax("api/contacts/" + id, {
+	$.ajax(`/api/contacts/${id}`, {
 		method: "DELETE"
 	}).then(function(data) {
 		console.log(data);
