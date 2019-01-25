@@ -20,7 +20,8 @@ module.exports = function(app) {
 			emailAddress: req.body.emailAddress || null
 		}).then(function(newContact) {
 			console.log("New contact:");
-			console.log(newContact);
+            console.log(newContact);
+            res.json(newContact);
 		}).catch(function(err) {
             console.log(err);
         });

@@ -27,7 +27,7 @@ $("#filterContacts").on("change", function() {
 
 // delete contact functionality
 $(".delete").on("click", function() {
-	var id = $(this).attr("data-id");
+	var id = $(this).parents("tr").attr("data-id");
 
 	$.ajax(`/api/contacts/${id}`, {
 		method: "DELETE"
