@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: true,
             validate: {
                 len: [10, 10],
-                is: ["^[0-9]+$",'i']
+                is: ["^[0-9]+$"]
             }
         },
         // emailAddress (VARCHAR, NULL, must be valid email format)

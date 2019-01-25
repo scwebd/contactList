@@ -27,13 +27,13 @@
 	<tbody>
 		{{!-- Our Handlebars code goes here! --}}
 		{{#each contacts}}
-			<tr>
+			<tr data-id="{{id}}">
 				<td>{{firstName}}</td>
 				<td>{{lastName}}</td>
 				<td>{{contactType}}</td>
 				<td>{{phoneNumber}}</td>
 				<td>{{emailAddress}}</td>
-				<td><span class="delete glyphicon glyphicon-remove" data-id="{{id}}"></span></td>
+				<td><span class="delete glyphicon glyphicon-remove"></span></td>
 			</tr>
 		{{/each}}
 	</tbody>
