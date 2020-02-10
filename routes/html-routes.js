@@ -1,49 +1,49 @@
-var db = require("../models");
+const db = require("../models");
 
 module.exports = function(app) {
     // this route should render the Handlebars 'form' template
-	app.get("/contacts/new", function(req, res) {
+	app.get("/contacts/new", (req, res) => {
 		res.render("form");
     });
     
     // this route should find all contacts in the table and render them using the Handlebars 
     // 'contacts' // template, sorted ascending by firstName
-    app.get("/", function(req, res) {
+    app.get("/", (req, res) => {
         db.Contact.findAll({
-            order: [['firstName', 'ASC'], ['lastName', 'ASC']]
-        }).then(function(contacts) {
+            order: [['firstName', 'ASC'], ['lastName', 'ASC']],
+            raw: true
+        }).then(contacts => {
             res.render("contacts", { 
                 name: "Sarah", 
                 contacts: contacts 
             });
-        }).catch(function(err) {
-            console.log(err);
+        }).catch(err => {
+            console.log(err.message);
+            res.status(500).json(err.message);
         });
     });
 
     // this route should find all contacts of a particular type (Personal or Business) and render them 
     // using the Handlebars 'contacts' template, sorted ascending by firstName
-    app.get("/:type", function(req, res) {
+    app.get("/:type", (req, res) => {
         // making the contact type title-cased
         var type = req.params.type.charAt(0).toUpperCase() + req.params.type.substring(1);
 
-        db.Contact.findAll(
-            {
-                where: { 
-                    contactType: req.params.type 
-                }
-            },
-            {
-                order: [['firstName', 'ASC'], ['lastName', 'ASC']]
-            }
-        ).then(function(contacts) {
+        db.Contact.findAll({
+            order: [['firstName', 'ASC'], ['lastName', 'ASC']],
+            raw: true,
+            where: { 
+                contactType: req.params.type 
+            }    
+        }).then(contacts => {
             res.render("contacts", { 
                 name: "Sarah", 
                 contacts: contacts, 
                 type: type 
             });
-        }).catch(function(err) {
-            console.log(err);
+        }).catch(err => {
+            console.log(err.message);
+            res.status(500).json(err.message);
         });
     });
 }
