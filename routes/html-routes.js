@@ -1,4 +1,4 @@
-const db = require("../models");
+const { Contact } = require("../models");
 
 module.exports = function(app) {
     // this route should render the Handlebars 'form' template
@@ -9,7 +9,7 @@ module.exports = function(app) {
     // this route should find all contacts in the table and render them using the Handlebars 
     // 'contacts' // template, sorted ascending by firstName
     app.get("/", (req, res) => {
-        db.Contact.findAll({
+        Contact.findAll({
             order: [['firstName', 'ASC'], ['lastName', 'ASC']],
             raw: true
         }).then(contacts => {
@@ -29,7 +29,7 @@ module.exports = function(app) {
         // making the contact type title-cased
         var type = req.params.type.charAt(0).toUpperCase() + req.params.type.substring(1);
 
-        db.Contact.findAll({
+        Contact.findAll({
             order: [['firstName', 'ASC'], ['lastName', 'ASC']],
             raw: true,
             where: { 

@@ -16,7 +16,10 @@ $("#addContact").on("submit", function(event) {
 	}).then(data => {
 		console.log(data);
 		location.href = "/";
-	});
+	}).catch(err => {
+        console.log(err);
+        alert(err.responseText)   
+    });
 });
 
 // filter contact by type functionality
@@ -27,7 +30,7 @@ $("#filterContacts").on("change", function() {
 
 // delete contact functionality
 $(".delete").on("click", function() {
-	const id = $(this).parents("tr").attr("data-id");
+	const id = $(this).parents("tr").data("id");
 
 	$.ajax(`/api/contacts/${id}`, {
 		method: "DELETE"
